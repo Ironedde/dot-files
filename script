@@ -1,9 +1,0 @@
-#!/bin/bash
-echo "placeholder"
-
-if [ -f /etc/redhat-release ]; then
-	echo "CentOS detected"
-elif [-f /etc/debian_version]; then
-	echo "Debian detected"
-fi
-#chsh -s /bin/zsh/
