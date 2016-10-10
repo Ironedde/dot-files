@@ -14,12 +14,12 @@ fi
 
 if [ $(chsh -l | grep -c "zsh") == "0" ]; then
 	echo "Installing zsh & oh-my-zsh"
-#	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 elif [ -d "$HOME/.oh-my-zsh/" ]; then
 	echo "Zsh and oh-my-zsh is installed"
 else
 	echo "zsh installed, installing oh-my-zsh"
-#	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
 
 if [ -f /etc/redhat-release ]; then
