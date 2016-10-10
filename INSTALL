@@ -44,4 +44,8 @@ if [ -d ".vim" ]; then
 else
 	echo ".vim missing from git folder, skipping..."
 fi
-
+#
+result=${PWD##*/}
+eval "cd .."
+echo "Deleting"
+eval "rm -rf $result"
