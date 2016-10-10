@@ -1,0 +1,47 @@
+#!/bin/bash
+echo "Lets get the config...."
+echo ""
+#pacman -S zsh
+
+if [ -z "$HOME" ]; then
+	echo "Critical failure, \$HOME not set."
+	echo "Type your full home path (no ~) and hit [ENTER] ex. /home/username"
+	read -e HOME 
+	echo $HOME
+else
+	echo "Current home dir: $HOME"
+fi
+
+if [ $(chsh -l | grep -c "zsh") == "0" ]; then
+	echo "Installing zsh & oh-my-zsh"
+#	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+elif [ -d "$HOME/.oh-my-zsh/" ]; then
+	echo "Zsh and oh-my-zsh is installed"
+else
+	echo "zsh installed, installing oh-my-zsh"
+#	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+fi
+
+if [ -f /etc/redhat-release ]; then
+	echo "Redhat detected"
+elif [-f /etc/debian_version]; then
+	echo "Debian detected"
+fi
+
+#Lets move some files
+if [ -f .vimrc ]; then
+	mv .vimrc $HOME/
+else
+	echo ".vimrc missing from git folder, skipping..."
+fi
+if [ -f .zshrc ]; then
+	mv .zshrc $HOME/
+else
+	echo ".zshrc missing from git folder, skipping..."
+fi
+if [ -d ".vim" ]; then
+	mv .vim $HOME/
+else
+	echo ".vim missing from git folder, skipping..."
+fi
+
