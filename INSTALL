@@ -1,4 +1,8 @@
 #!/bin/bash
+
+git submodule update --init --recursive
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 echo "Lets get the config...."
 echo ""
 #pacman -S zsh
@@ -29,18 +33,18 @@ elif [-f /etc/debian_version]; then
 fi
 
 #Lets move some files
-if [ -f .vimrc ]; then
-	ln -fs .vimrc $HOME/.vimrc
+if [ -f $DIR/.vimrc ]; then
+	ln -fs $DIR/.vimrc $HOME/.vimrc
 else
 	echo ".vimrc missing from git folder, skipping..."
 fi
-if [ -f .zshrc ]; then
-	ln -fs .zshrc $HOME/.zshrc
+if [ -f $DIR/.zshrc ]; then
+	ln -fs $DIR/.zshrc $HOME/.zshrc
 else
 	echo ".zshrc missing from git folder, skipping..."
 fi
-if [ -d ".vim" ]; then
-	ln -fs .vim $HOME/.vim
+if [ -d "$DIR/.vim" ]; then
+	ln -fs $DIR/.vim $HOME/.vim
 else
 	echo ".vim missing from git folder, skipping..."
 fi
