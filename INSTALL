@@ -30,17 +30,17 @@ fi
 
 #Lets move some files
 if [ -f .vimrc ]; then
-	mv .vimrc $HOME/
+	ln -fs .vimrc $HOME/.vimrc
 else
 	echo ".vimrc missing from git folder, skipping..."
 fi
 if [ -f .zshrc ]; then
-	mv .zshrc $HOME/
+	ls -fs .zshrc $HOME/.zshrc
 else
 	echo ".zshrc missing from git folder, skipping..."
 fi
 if [ -d ".vim" ]; then
-	mv .vim $HOME/
+	ln -ls .vim $HOME/.vim
 else
 	echo ".vim missing from git folder, skipping..."
 fi
