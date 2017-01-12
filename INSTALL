@@ -35,12 +35,12 @@ else
 	echo ".vimrc missing from git folder, skipping..."
 fi
 if [ -f .zshrc ]; then
-	ls -fs .zshrc $HOME/.zshrc
+	ln -fs .zshrc $HOME/.zshrc
 else
 	echo ".zshrc missing from git folder, skipping..."
 fi
 if [ -d ".vim" ]; then
-	ln -ls .vim $HOME/.vim
+	ln -fs .vim $HOME/.vim
 else
 	echo ".vim missing from git folder, skipping..."
 fi
