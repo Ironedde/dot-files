@@ -19,17 +19,12 @@ fi
 
 read -p "Please confirm you're using zsh [y] " -n 1 -r
 echo    # (optional) move to a new line
-if [[ ! $REPLY =~ ^[Yy]$ ]]
+if [[ $REPLY =~ ^[Yy]$ ]]
 then
 	#if [ $(chsh -l | grep -c "zsh") == "0" ]; then
-	if [ -d "$HOME/.oh-my-zsh/" ]; then
+	if [ ! -d "$HOME/.oh-my-zsh/" ]; then
 		echo "Installing oh-my-zsh"
 		sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-	fi
-	if [ -f $DIR/.zshrc ]; then
-		ln -fs $DIR/.zshrc $HOME/.zshrc
-	else
-		echo ".zshrc missing from git folder, skipping..."
 	fi
 fi
 
@@ -45,10 +40,15 @@ if [ -f $DIR/.vimrc ]; then
 else
 	echo ".vimrc missing from git folder, skipping..."
 fi
-if [ -d "$DIR/.vim" ]; then
+if [ -d "$DIR/.vim" ] && [ ! -h "$HOME/.vim" ]; then
 	ln -fs $DIR/.vim $HOME/.vim
 else
-	echo ".vim missing from git folder, skipping..."
+	echo ".vim, skipping..."
+fi
+if [ -f $DIR/.zshrc ]; then
+	ln -fs $DIR/.zshrc $HOME/.zshrc
+else
+	echo ".zshrc missing from git folder, skipping..."
 fi
 #
 #result=${PWD##*/}
